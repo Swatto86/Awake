@@ -1,0 +1,29 @@
+[package]
+name = "awake"
+version = "1.0.0"
+description = "A system tray application to prevent your Linux system from going to sleep"
+authors = ["Swatto"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "awake_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-autostart = "2"
+tokio = { version = "1", features = ["time", "rt-multi-thread", "macros"] }
+image = { version = "0.24", default-features = false, features = ["png"] }
+enigo = "0.3.0"
+
+[profile.release]
+opt-level = "z"  # Optimize for size
+lto = true       # Enable Link Time Optimization
+codegen-units = 1 # Reduce codegen units to improve optimization
+panic = "abort"  # Use abort for panics to reduce binary size
+strip = true     # Strip symbols from binary
