@@ -1,4 +1,4 @@
-//! Tea - System Tray Sleep Prevention Utility
+//! Awake - System Tray Sleep Prevention Utility
 //!
 //! Prevents system sleep via F15 key simulation with optional display control.
 //!
@@ -39,7 +39,7 @@ async fn main() {
     // Initialize logging
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
-    log::info!("Starting Tea application");
+    log::info!("Starting Awake application");
 
     // Load persisted state
     let state = read_state();
@@ -167,7 +167,6 @@ fn setup_tray(
     // Wrap menu items for event handler
     let toggle_sleep_item = Arc::new(toggle_sleep_item);
     let toggle_sleep_item_clone = toggle_sleep_item.clone();
-    let toggle_autostart_item = Arc::new(toggle_autostart_item);
     let screen_on_item = Arc::new(screen_on_item);
     let screen_on_item_clone = screen_on_item.clone();
     let screen_off_item = Arc::new(screen_off_item);
